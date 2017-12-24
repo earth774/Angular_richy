@@ -1,0 +1,136 @@
+<div class="table-wrapper">
+    <form  (ngSubmit)="onSearch(searchForm.value)" [formGroup]="searchForm"> 
+            <div class="table-title">
+                
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h2><b>ผู้ใช้ทั้งหมด</b></h2>
+                    </div>
+                    <div class="col-sm-8">                      
+                        <button type="button" class="add-new" (click)="exportToExcel(searchForm.value)"><i class="fa fa-download" aria-hidden="true"></i> excel</button>  
+                    </div>
+                </div>
+            </div>
+            <div class="table-filter">
+        
+                <div class="row">
+          
+          <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary" [disabled]="!searchForm.valid"><i class="fa fa-search"></i></button>
+                        <div class="filter-group">
+                            <select class="form-control" formControlName="year">
+                                <option value="any">ปี</option>
+                                <option *ngFor="let state of year" [value]="state">{{state}}</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>เดือน-ปี</label>
+                            <select class="form-control" formControlName="month">
+                                <option value="any">เดือน</option>
+                                 <option *ngFor="let state of month; let i=index" [value]="i">{{state}}</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <select class="form-control" formControlName="order_status">
+                                <option value="any">การจัดส่ง</option>
+                                <option value="1">สถานนะจัดส่งเรียบร้อย </option>
+                                <option value="0">สถานนะยังไม่ได้จัดส่ง </option>
+                                
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>จังหวัด</label>
+                            <select class="form-control" formControlName="location">
+                                <option value="All">ทั้งหมด</option>
+                                <option *ngFor="let state of province" [value]="state.PROVINCE_NAME">{{state.PROVINCE_NAME}}</option>                           
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>สถานะ</label>
+                            <select class="form-control" formControlName="status">
+                                <option value="any">ทั้งหมด</option>
+                                <option value="admin">Admin</option>
+                                <option value="dealer">Dealer</option>
+                                <option value="vip">Vip</option>
+                                <option value="gold">Gold</option>
+                            </select>
+                        </div>
+                        <span class="filter-icon"><i class="fa fa-filter"></i></span>
+          </div>
+        </div>
+        
+                </div>
+                </form>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th >#</th>
+                        <th ></th>
+                        <th>สถานะ</th>
+                        <th >วัน-เดือน-ปี</th>
+                        <th >เงิน</th>
+                        <th>สถานะการจัดส่ง</th>
+                        <th >จำนวน</th>
+                        <th ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of data; let i = index" [attr.data-index]="i"> 
+                                <td >{{i+1}}</td>
+                                <td ><a routerLink="../profile/{{row.user_username}}"><img src="{{row.user_image}}" width="50" height="50" class="avatar" alt="Avatar">{{row.user_name}}</a></td>
+                                <td >{{row.user_status}}</td>
+                                <td >{{row.order_date | date:'dd-MM-yyyy'}}</td>
+                                <td >฿ {{row.order_total}}</td>
+                                <td *ngIf="(row.order_status==1)"><span style="color: green">สถานนะจัดส่งเรียบร้อย</span></td>
+                                <td *ngIf="(row.order_status!=1)"><span style="color: red">สถานนะยังไม่ได้จัดส่ง</span></td>
+                                <td >{{row.order_num}}</td>
+                                <td ><a class="delete" title="Delete" data-toggle="tooltip"  data-toggle="modal" data-target="#deleteEmployeeModal" (click)="Delete(row.order_id)" id="delete"><i class="material-icons" data-toggle="tooltip" title="แสดงข้อมูล">&#xE417;</i></a></td>
+                            </tr>
+                    
+                </tbody>
+            </table>
+
+            <!-- List Data -->
+
+    <div id="deleteEmployeeModal" class="modal fade" role="dialog" data-backdrop="false">
+        <div class="modal-dialog" style="max-width: 600px; ">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">                      
+                        <h4 class="modal-title">รายการสั่งซื่อ</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">                    
+                        <table class="table table-striped table-hover">
+                <thead>
+                    <tr style="text-align:center;">
+                        <th>#</th>
+                        <th>สินค้า</th>       
+                        <th>จำนวน</th>
+                        <th>ราคา</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let hero of data_detail; let i = index" [attr.data-index]="i">
+                        <td>{{i+1}}</td>
+                        <td><a ><img src="{{hero.order_d_img}}" width="50" height="50" class="avatar" alt="Avatar">{{hero.order_d_title}}</a></td>
+                        <!-- <td>London</td> -->                      
+                        <!-- <td><span class="status text-success">&bull;</span> Delivered</td> -->
+                        <td>{{hero.order_d_qty}}</td>
+                        <!-- <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td> -->
+                        <td>
+                            ฿ {{hero.order_d_price}}
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+                    </div>
+                    <div class="modal-footer">
+                        
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

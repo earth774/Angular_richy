@@ -1,0 +1,450 @@
+<div class="bs-example">
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default" *ngFor="let row of data; let i = index" [attr.data-index]="i">
+        <div class="panel-heading" style="background-color: #a58a47;">
+          <h4 class="panel-title">
+            <div class="row">
+                 <div class="col-md-8" style="padding-top:0.3em;">
+                    <a routerLink="../profile/{{row.user_username}}" style="color:#FFF;"><img src="{{row.user_image}}" width="50" height="50" class="avatar" style="border-radius: 100%; box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75); " alt="Avatar">   {{row.user_name}} </a>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="row">
+                      <div class="col-md-1" style="padding-right: 30px;">
+                        <a class="btn btn-primary" data-toggle="collapse" (click)="onList(row.user_username)"  data-parent="#accordion" href="#collapseOne{{i+1}}">
+                         {{row.num}}
+                          </a>
+                      </div>
+                      <div class="col-md-2">
+                        <a class="btn btn-success" data-toggle="modal"  data-target="#myModal" (click)="createForm(19.811203438811614 ,99.89400386810303,row.user_name,row.user_status,row.user_username)">
+                         <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                          </a>
+                           
+                      </div>
+                      <div class="col-md-2">
+                        <a class="btn btn-danger" data-toggle="modal" data-target="#deleteData" (click)="delete_modal(row.user_id,row.user_image)">
+                          <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                      <div class="col-md-2">
+                        <a class="btn btn-warning" data-toggle="modal" (click)="edit(row.user_name,row.user_status,row.user_head,row.user_image,row.user_id,row.user_username,row.user_password,row.user_tel,row.user_facebook,row.user_email,row.user_address,row.user_province,row.user_amphur,row.user_lat,row.user_lng)" data-target="#myModal1">
+                          <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  
+            </div>
+          </h4>
+        </div>
+        <div id="collapseOne{{i+1}}" *ngIf="row.num!=0"  class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel-group" id="accordion1">
+            <div class="panel panel-default"  *ngFor="let row1 of data1; let j = index" [attr.data-index]="j">
+              <div class="panel-heading" style="background-color: #c5c38e;">
+                <h4 class="panel-title">
+                  <div class="row">
+                       <div class="col-md-8" style="padding-top:0.3em;">
+                          <a routerLink="../profile/{{row1.user_username}}" style="color:#FFF;"><img src="{{row1.user_image}}" width="50" height="50" class="avatar" style="border-radius: 100%; box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75); " alt="Avatar">   {{row1.user_name}}</a>
+                        </div>
+                        <div class="col-md-4" >
+                          <div class="row">
+                            <div class="col-md-1" style="padding-right: 30px;">
+                              <a class="btn btn-primary" data-toggle="collapse" (click)="onList1(row1.user_username)"  data-parent="#accordion1" href="#collapseOne{{i+1}}_{{j+1}}">
+                               {{row1.num}}
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                              <a class="btn btn-success" data-toggle="modal" (click)="createForm(19.811203438811614 ,99.89400386810303,row1.user_name,row1.user_status,row1.user_username)" data-target="#myModal">
+                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                              </a>
+                            </div>
+                            <div class="col-md-2">
+                              <a class="btn btn-danger" data-toggle="modal" data-target="#deleteData" (click)="delete_modal(row1.user_id,row1.user_image)">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                              </a>
+                            </div>
+                            <div class="col-md-2">
+                              <a class="btn btn-warning" data-toggle="modal" data-target="#myModal1" (click)="edit(row1.user_name,row1.user_status,row1.user_head,row1.user_image,row1.user_id,row1.user_username,row1.user_password,row1.user_tel,row1.user_facebook,row1.user_email,row1.user_address,row1.user_province,row1.user_amphur,row1.user_lat,row1.user_lng)">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                              </a>
+                            </div>
+                          </div>
+                          
+                        </div>
+                        
+                  </div>
+                </h4>
+              </div>
+              <div id="collapseOne{{i+1}}_{{j+1}}" *ngIf="row1.num!=0" class="panel-collapse collapse ">
+                <div class="panel-body">
+                  <div class="panel-group" id="accordion2">
+            <div class="panel panel-default"  *ngFor="let row2 of data2; let k = index" [attr.data-index]="k">
+              <div class="panel-heading" style="background-color: #caceb6;">
+                <h4 class="panel-title">
+                  <div class="row">
+                       <div class="col-md-8" style="padding-top:0.3em;">
+                          <a routerLink="../profile/{{row2.user_username}}" style="color:#FFF;"><img src="{{row2.user_image}}" width="50" height="50" class="avatar" style="border-radius: 100%; box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75); " alt="Avatar">   {{row2.user_name}}  </a>
+                        </div>
+                        <div class="col-md-4" >
+                          <div class="row">
+                            <div class="col-md-1" style="padding-right: 30px;">
+                              <a class="btn btn-primary" data-toggle="collapse"   data-parent="#accordion2" href="#collapseOne{{i+1}}_{{j+1}}_{{k+1}}">
+                               {{row2.num}}
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                              <a class="btn btn-danger" data-toggle="modal" data-target="#deleteData" (click)="delete_modal(row2.user_id,row2.user_image)">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                              </a>
+                            </div>
+                            <div class="col-md-2">
+                              <a class="btn btn-warning" data-toggle="modal" data-target="#myModal1" (click)="edit(row2.user_name,row2.user_status,row2.user_head,row2.user_image,row2.user_id,row2.user_username,row2.user_password,row2.user_tel,row2.user_facebook,row2.user_email,row2.user_address,row2.user_province,row2.user_amphur,row2.user_lat,row2.user_lng)">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                              </a>
+                            </div>
+                          </div>
+                          
+                        </div>
+                        
+                  </div>
+                </h4>
+              </div>
+              <div id="collapseOne{{i+1}}_{{j+1}}_{{k+1}}" *ngIf="row2.num!=0" class="panel-collapse collapse ">
+                <div class="panel-body">
+                  
+                </div>
+              </div>
+            </div>
+      </div>
+                </div>
+              </div>
+              <div id="collapseOne{{i+1}}" *ngIf="row1.num==0"  class="panel-collapse collapse">
+                <div class="panel-body">
+                  
+                </div>
+              </div>
+            </div>
+      </div>
+          </div>
+        </div>
+        <div id="collapseOne{{i+1}}" *ngIf="row.num==0"  class="panel-collapse collapse">
+          <div class="panel-body">
+            
+          </div>
+        </div>
+      </div>
+      
+      
+      
+    </div>
+
+  </div>
+
+
+  <!-- Add data -->
+<form  (ngSubmit)="onSubmit(heroForm.value)" [formGroup]="heroForm" >
+  <div class="modal fade" id="myModal" role="dialog" data-backdrop="false">
+    
+    <div class="modal-dialog" style="max-width: 600px; ">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">เพิ่มข้อมูลสินค้า</h4>
+        </div>
+        <div class="modal-body">
+          <div class="profile-top">
+            <div class="profile-photo">
+            <img (click)="onClickUpload()" #img3 src="{{(!imgdata)?'http://placehold.it/256x256':imgdata}}">
+            <input type="file" 
+            id="uploadFile" 
+            #filess 
+            name="uploadFile" 
+            style="display: none;" 
+            accept="image/*" 
+            (change)="changeListener($event)"><br>
+            <a (click)="onClickUpload()" style=" margin-top:0.5em;">Change picture</a>
+            </div>
+            <hr width="300">
+          </div>
+          <div class="form-group">
+            <label class="center-block">ชื่อผู้ใช้:
+              <input class="form-control" formControlName="name">
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="center-block">Username:
+              <input  class="form-control" formControlName="username">
+            </label>
+          </div>
+      <div class="form-group">
+        <label class="center-block">Password:
+          <input type="password" class="form-control" formControlName="password">
+        </label>
+      </div>
+          <div class="form-group">
+            <label class="center-block">สถานะ:
+              
+                <select class="form-control" formControlName="status" (change)="onSelectChange($event)" [(ngModel)]="insertdata.status" disabled>
+                  <option *ngFor="let state of states" [value]="state">{{state}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="center-block">หัวหน้า:</label>
+              <input  ng2-auto-complete
+                   formControlName="continent"
+                   [source]="continents"
+                   [list-formatter]="autocompleListFormatter"
+                   value-property-name="id"
+                   display-property-name="name"
+                   placeholder="Contients"
+                   class="form-control"
+                   [(ngModel)]="insertdata.head" disabled>
+          </div>
+          <div class="form-group">
+            <label class="center-block">ที่อยู่:
+              <textarea class="form-control" rows="5" formControlName="address"></textarea> 
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="center-block">จังหวัด:
+              <select class="form-control" formControlName="province" (change)="onAmphur($event)">
+                  <option *ngFor="let state of province"  >{{state.PROVINCE_NAME}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="center-block">อำเภอ:
+              <select class="form-control" formControlName="amphur">
+                  <option *ngFor="let state of amphur" >{{state.AMPHUR_NAME}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="center-block">เบอร์โทรศัพย์:
+              <input class="form-control" formControlName="tel">
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="center-block">Facebook:
+              <input class="form-control" formControlName="facebook">
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="center-block">Email:
+              <input class="form-control" formControlName="email">
+            </label>
+          </div>
+
+        <div id="map1" class="maps"></div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" style="    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;" type="submit" [disabled]="!heroForm.valid" >บันทึก</button>
+
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+  </form>
+  <!-- <div class="panel-group" id="accordion1">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">1. How do I activate my account?</a>
+          </h4>
+        </div>
+        <div id="collapseOne1" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <p>The instructions to activate your account will be sent to your email once you have submitted the registration form. If you did not receive this email, your email service provider’s mailing software may be blocking it. You can try checking your junk / spam folder or contact us at <a href="#" >help@samplestore.com</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1">2. How do I track my orders and payment?</a>
+                </h4>
+        </div>
+        <div id="collapseTwo1" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p>After logging into your account, the status of your checkout history can be found under Order History. For orders via registered postage, a tracking number (article tracking number) will be given to you <a href="#">Learn more about tracking number.</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#collapseThree1">3. What are the payment method available? </a>
+                </h4>
+        </div>
+        <div id="collapseThree1" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p>At the moment, we only accept Credit/Debit cards and Paypal payments. <a href="#">Learn more about major banks accepting card transactions.</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#collapseFour1">4. How can I change my shipping address?</a>
+                </h4>
+        </div>
+        <div id="collapseFour1" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p>By default, the last used shipping address will be saved into your Sample Store account. When you are checking out your order, the default shipping address will be displayed and you have the option to amend it if you need to. <a href="#">More about shipping addresses.</a></p>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+<!-- Edit data -->
+  <form  (ngSubmit)="onUpdate(editForm.value)" [formGroup]="editForm" >
+  <div class="modal fade" id="myModal1" role="dialog" data-backdrop="false">
+    
+    <div class="modal-dialog" style="max-width: 600px; "> 
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">เพิ่มข้อมูลสินค้า</h4>
+        </div>
+        <div class="modal-body">
+          <div class="profile-top">
+            <div class="profile-photo">
+            <img (click)="onClickUpload()" #img4 src="{{(!editdata.image)?'http://placehold.it/256x256':editdata.image}}">
+            <input type="file" 
+            id="uploadFile" 
+            #filess 
+            name="uploadFile" 
+            style="display: none;" 
+            accept="image/*" 
+            (change)="changeListener($event)"><br>
+            <a (click)="onClickUpload()" style=" margin-top:0.5em;">Change picture</a>
+            </div>
+            <hr width="300">
+          </div>
+          <div class="form-group">
+            <label class="center-block">ชื่อผู้ใช้:
+              <input class="form-control" formControlName="name1" [(ngModel)]="editdata.name">
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="center-block">Username:
+              <input  class="form-control" formControlName="username1" [(ngModel)]="editdata.username" disabled>
+            </label>
+          </div>
+      <div class="form-group">
+        <label class="center-block">Password:
+          <input type="password" class="form-control" formControlName="password1" [(ngModel)]="editdata.password" disabled>
+        </label>
+      </div>
+          <div class="form-group">
+            <label class="center-block">สถานะ:
+              
+                <select class="form-control" formControlName="status1" (change)="onSelectChange($event)" [(ngModel)]="editdata.status">
+                  <option *ngFor="let state of states" [value]="state">{{state}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="center-block">หัวหน้า:</label>
+              <input  ng2-auto-complete
+                   formControlName="continent1"
+                   [source]="continents1"
+                   [list-formatter]="autocompleListFormatter"
+                   value-property-name="id"
+                   display-property-name="name"
+                   placeholder="Contients"
+                   class="form-control"
+                   [(ngModel)]="editdata.head">
+            
+          </div>
+          <div class="form-group">
+            <label class="center-block">ที่อยู่:
+              <textarea class="form-control" rows="5" formControlName="address1" [(ngModel)]="editdata.address"></textarea> 
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="center-block">จังหวัด:
+              <select class="form-control" formControlName="province1" (change)="onAmphur($event)" [(ngModel)]="editdata.province">
+                  <option *ngFor="let state of province" [value]="state.PROVINCE_NAME">{{state.PROVINCE_NAME}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="center-block">อำเภอ:
+              <select class="form-control" formControlName="amphur1" [(ngModel)]="editdata.amphur" *ngIf="!search_amphur">
+                  <option >{{editdata.amphur}}</option>
+                  <option *ngFor="let state of amphur1" [value]="state.AMPHUR_NAME">{{state.AMPHUR_NAME}}</option>
+              </select>
+              <select class="form-control" formControlName="amphur1" [(ngModel)]="editdata.amphur" *ngIf="search_amphur">
+                  <option >กรุณาเลือกเขต / อำเภอ</option>
+                  <option *ngFor="let state of amphur1">{{state.AMPHUR_NAME}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="center-block">เบอร์โทรศัพย์:
+              <input class="form-control" formControlName="tel1" [(ngModel)]="editdata.tel">
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="center-block">Facebook:
+              <input class="form-control" formControlName="facebook1" [(ngModel)]="editdata.facebook">
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="center-block">Email:
+              <input class="form-control" formControlName="email1" [(ngModel)]="editdata.email">
+            </label>
+          </div>
+
+        <div id="map" class="maps"></div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" style="color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;" type="submit"><!-- [disabled]="!heroForm.valid" > -->แก้ไข</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+  </form>
+
+  <!-- delete -->
+    <div class="modal fade" id="deleteData"  role="dialog" data-backdrop="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">                      
+                        <h4 class="modal-title">ลบข้อมูลสมาชิก</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">                    
+                        <p>ท่านต้องการยืนยันจะลบข้อมูลสมาชิก</p>
+                        <p class="text-warning"><small>เมื่อท่านลบข้อมูลไปแล้วจะไม่สามารถกลับมาแก้ไขได้อีก</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" style="color: #fff;background-color: #d9534f;border-color: #d43f3a;" (click)="onDelete()" type="submit" data-dismiss="modal">ลบ</button>
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>          

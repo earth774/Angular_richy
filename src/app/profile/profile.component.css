@@ -1,0 +1,12 @@
+#image:hover {
+   background-image: url('http://placehold.it/256x256');
+}
+.maps{
+  width: 100%;
+  height:30em;
+}
+
+.change_picture{
+	font-size: 14px;
+
+}

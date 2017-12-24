@@ -1,0 +1,59 @@
+
+<div class="sidebar-wrapper">
+    <div class="logo">
+        <a routerLink="../dashboard" class="simple-text">
+            <div >
+                <img src="../../assets/img/header_logo.png" alt="" width="200">
+            </div>
+        </a>
+    </div>
+    <ul class="nav">
+            <li *ngIf="isNotMobileMenu()">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="ti-panel"></i>
+					<p>Stats</p>
+                </a>
+            </li>
+            <li class="dropdown" *ngIf="isNotMobileMenu()">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="ti-bell"></i>
+                        <p class="notification">5</p>
+    					<p>Notifications</p>
+    					<b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Notification 1</a></li>
+                    <li><a href="#">Notification 2</a></li>
+                    <li><a href="#">Notification 3</a></li>
+                    <li><a href="#">Notification 4</a></li>
+                    <li><a href="#">Another notification</a></li>
+                  </ul>
+            </li>
+            <li *ngIf="isNotMobileMenu()">
+                <a href="#">
+					<i class="ti-settings"></i>
+					<p>Settings</p>
+                </a>
+            </li>
+            <li class="divider" *ngIf="isNotMobileMenu()"></li>
+        <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.class}}">
+            <a *ngIf="menuItem.path!='upgrade' && menuItem.path!='report_month_year'" [routerLink]="[menuItem.path]">
+                <i class="{{menuItem.icon}}"></i>
+                <p>{{menuItem.title}}</p>
+            </a>
+                <a  *ngIf="menuItem.path=='report_month_year'" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                    <i class="{{menuItem.icon}}"></i>
+                    <p>{{menuItem.title}} <span class="caret"></span></p>
+                    
+                </a>
+                <ul class="dropdown-menu" *ngIf="menuItem.path=='report_month_year'">
+                  <li><a [routerLink]="[menuItem.path]" style="color:#212120; line-height: 30px;font-size: 12px;font-weight: 600;text-transform: uppercase;"><i class="ti-agenda"></i> รายงานรายเดือน-ปี</a></li>
+                  <li><a [routerLink]="[menuItem.path1]" style="color:#212120; line-height: 30px;font-size: 12px;font-weight: 600;text-transform: uppercase;"><i class="ti-agenda"></i>รายงานรายบุคคล</a></li>
+                </ul>
+            <a href="" *ngIf="menuItem.path=='upgrade'" (click)="logout()">
+                <i class="{{menuItem.icon}}"></i>
+                <p>{{menuItem.title}}</p>
+            </a>
+        </li>
+    </ul>
+</div>

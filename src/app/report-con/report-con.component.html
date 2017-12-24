@@ -1,0 +1,102 @@
+<div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-4">
+						<h2><b>ยืนยันรายการสั่ง</b></h2>
+					</div>
+                </div>
+            </div>
+
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th></th>
+                        <th>วัน-เดือน-ปี</th>
+						<th>สถานะ</th>					
+                        <th>เบอร์</th>						
+						<th style="width: 5em;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of data; let i = index" [attr.data-index]="i">
+                        <td>{{i+1}}</td>
+                        <td><a routerLink="../profile/{{user.user_username}}"><img src="{{user.user_image}}" width="50" height="50" class="avatar" alt="Avatar"> {{user.user_name}}</a></td>
+                        <td>{{user.order_date | date:'dd-MM-yyyy'}}</td>                       
+						<td>{{user.user_status}}</td>                       
+						<td>{{user.user_tel}}</td>
+						<td>
+                            <a class="edit" title="Edit" data-toggle="tooltip" data-toggle="modal" data-target="#myModal" id="success" (click)="confirm(user.order_id)"><i class="material-icons" data-toggle="tooltip" title="ยืนยัน">&#xE86C;</i></a>
+                            
+                            <a class="delete" title="Delete" data-toggle="tooltip"  data-toggle="modal" data-target="#deleteEmployeeModal" (click)="Delete(user.order_id)" id="delete"><i class="material-icons" data-toggle="tooltip" title="แสดงข้อมูล">&#xE417;</i></a>
+                        </td>
+                    </tr>
+					
+                </tbody>
+            </table>
+    <!-- Edit -->
+    <div class="modal fade" id="myModal"  role="dialog" data-backdrop="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">                      
+                        <h4 class="modal-title">ยืนยันสินค้า</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">                    
+                        <p>ท่านแน่ใจจะยืนยันการจัดส่งสินค้าชิ้นนี้หรือไม่</p>
+                        <p class="text-warning"><small>เมื่อยืนยันแล้วไม่สามารถแก้ไขข้อมูลได ๆ ได้อีก</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" style="color: #fff; background-color: #5cb85c; border-color: #4cae4c;" (click)="edit()" type="submit" data-dismiss="modal">ยืนยัน</button>
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- List Data -->
+
+    <div id="deleteEmployeeModal" class="modal fade" role="dialog" data-backdrop="false">
+        <div class="modal-dialog" style="max-width: 600px; ">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">                      
+                        <h4 class="modal-title">รายละเอียดสินค้า</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">                    
+                        <table class="table table-striped table-hover">
+                <thead>
+                    <tr style="text-align:center;">
+                        <th>#</th>
+                        <th>สินค้า</th>       
+                        <th>จำนวน</th>
+                        <th>ราคา</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let hero of data_detail; let i = index" [attr.data-index]="i">
+                        <td>{{i+1}}</td>
+                        <td><a href="#"><img src="{{hero.order_d_img}}" width="50" height="50" class="avatar" alt="Avatar">{{hero.order_d_title}}</a></td>
+                        <!-- <td>London</td> -->                      
+                        <!-- <td><span class="status text-success">&bull;</span> Delivered</td> -->
+                        <td>{{hero.order_d_qty}}</td>
+                        <!-- <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td> -->
+                        <td>
+                            ฿ {{hero.order_d_price}}
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+                    </div>
+                    <div class="modal-footer">
+                        
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

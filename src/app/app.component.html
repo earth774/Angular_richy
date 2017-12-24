@@ -1,0 +1,15 @@
+<div class="wrapper" *ngIf="removeFooter()">
+    <div class="sidebar" data-background-color="black" data-active-color="info">
+        <sidebar-cmp></sidebar-cmp>
+    </div>
+    <div class="main-panel">
+        <navbar-cmp></navbar-cmp>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+        <footer-cmp></footer-cmp>
+    </div>
+</div>
+<div  *ngIf="!removeFooter()">
+    <router-outlet  ></router-outlet>
+</div>

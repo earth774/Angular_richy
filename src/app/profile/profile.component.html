@@ -1,0 +1,388 @@
+<div *ngFor="let hero of heroes">
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-lg-4 col-md-5">
+                <div class="card card-user">
+                    <div class="image">
+                        <img  src="assets/img/background.jpg" alt="..."/>
+                        
+                    </div>
+                    <div class="content">
+                        <div class="author">
+                        	
+                          <img (click)="onClickUpload()"  #img class="avatar border-white" [src]="hero.image" id="image" />
+                          
+                          <input type="file" 
+				            id="uploadFile" 
+				            #filess 
+				            name="uploadFile" 
+				            style="display: none;" 
+				            accept="image/*" 
+				            (change)="changeListener($event)">
+                            <p class="change_picture">
+                                <a (click)="onClickUpload()" style=" margin-top:0.5em;">Change picture</a>
+                            </p>
+                          <h4 class="title">
+                            {{hero.name}}<br />
+                            
+                          </h4>
+                        </div>
+                        <p class="description text-center">
+                            "{{hero.address}}"
+                        </p>
+                    </div>
+                    <hr>
+                    <!-- <div class="text-center">
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-1">
+                                <h5>12<br /><small>Files</small></h5>
+                            </div>
+                            <div class="col-md-4">
+                                <h5>2GB<br /><small>Used</small></h5>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>24,6$<br /><small>Spent</small></h5>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- <div class="card">
+                    <div class="header">
+                        <h4 class="title">Team Members</h4>
+                    </div>
+                    <div class="content">
+                        <ul class="list-unstyled team-members">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <div class="avatar">
+                                                    <img src="assets/img/faces/face-0.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                DJ Khaled
+                                                <br />
+                                                <span class="text-muted"><small>Offline</small></span>
+                                            </div>
+
+                                            <div class="col-xs-3 text-right">
+                                                <button class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <div class="avatar">
+                                                    <img src="assets/img/faces/face-1.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Creative Tim
+                                                <br />
+                                                <span class="text-success"><small>Available</small></span>
+                                            </div>
+
+                                            <div class="col-xs-3 text-right">
+                                                <button class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <div class="avatar">
+                                                    <img src="assets/img/faces/face-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Flume
+                                                <br />
+                                                <span class="text-danger"><small>Busy</small></span>
+                                            </div>
+
+                                            <div class="col-xs-3 text-right">
+                                                <button class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                    </div>
+                </div> -->
+            </div>
+            <div class="col-lg-8 col-md-7">
+                <div class="card ">
+                    <div class="header">
+                        <h4 class="title">ยอดรายได้ปี {{year | date:'yyyy'}}</h4>
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="{{hero.user}}" class="ct-chart"></div>
+
+                                <div class="footer">
+                                    <!-- <div class="chart-legend">
+                                        <i class="fa fa-circle text-info"></i> Dealer
+                                        <i class="fa fa-circle text-danger"></i> Vip
+                                        <i class="fa fa-circle text-warning"></i> Gold
+                                    </div> -->
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> อัปเดต ณ {{year | date:'HH:mm'}} น.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">รายการสั่งซื้อ {{hero.name}}</h4>
+                    <p class="category">ข้อมูลสถานะการสั่งสินค้าทั้งหมด</p>
+                </div>
+                <div class="content table-responsive table-full-width">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr style="text-align:center;">
+                                <th >#</th>
+                                <th ></th>
+                                <th>สถานะ</th>
+                                <th >วัน-เดือน-ปี</th>
+                                <th >เงิน</th>
+                                <th>สถานะการจัดส่ง</th>
+                                <th >จำนวน</th>
+                                <th ></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of data; let i = index" [attr.data-index]="i"> 
+                                <td >{{(a_1*1)+(i+1)}}</td>
+                                <td ><a routerLink="../profile/{{row.user_username}}"><img src="{{row.user_image}}" width="50" height="50" class="avatar" alt="Avatar">{{row.user_name}}</a></td>
+                                <td >{{row.user_status}}</td>
+                                <td >{{row.order_date | date:'dd-MM-yyyy'}}</td>
+                                <td >฿ {{row.order_total}}</td>
+                                <td *ngIf="(row.order_status==1)"><span style="color: green">สถานนะจัดส่งเรียบร้อย</span></td>
+                                <td *ngIf="(row.order_status!=1)"><span style="color: red">สถานนะยังไม่ได้จัดส่ง</span></td>
+                                <td >{{row.order_num}}</td>
+                                <td ><a class="delete" title="Delete" data-toggle="tooltip"  data-toggle="modal" data-target="#deleteEmployeeModal" (click)="Delete(row.order_id)" id="delete"><i class="material-icons" data-toggle="tooltip" title="แสดงข้อมูล">&#xE417;</i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clearfix">
+                
+                <ul class="pagination">
+                    <!-- <li class="page-item disabled"><a href="#">Previous</a></li> -->
+                    <li *ngFor="let data of b;let i = index" class="{{data.class}}" ><a (click)="pagination(i)" class="page-link">{{i+1}}</a></li>
+                    <!-- <li class="page-item"><a href="#" class="page-link">Next</a></li> -->
+                </ul>
+            </div>
+        </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 col-md-7">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">แผนที่</h4>
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="map" class="maps"></div>
+                            </div>
+                       </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="col-lg-7 col-md-9">
+                <div class="card">
+                        <div class="header">
+                            <h4 class="title">แก้ไขข้อมูล</h4>
+                        </div>
+                        <div class="content">
+                            <form (ngSubmit)="onSubmit(hero.image)" [formGroup]="heroForm" >
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>ชื่อ-สกุล</label>
+                                            <!-- <input type="text" class="form-control border-input" disabled placeholder="Company" value="Creative Code Inc."> -->
+                                            <input class="form-control border-input"  formControlName="name1" [(ngModel)]="hero.name">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Username</label>
+                                            <input type="text" class="form-control border-input" formControlName="username1" [(ngModel)]="hero.user">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">เบอร์โทรศัพท์</label>
+                                            <input type="text" class="form-control border-input" formControlName="tel1" [(ngModel)]="hero.tel">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Facebook</label>
+                                            <input type="text" class="form-control border-input" formControlName="facebook1" [(ngModel)]="hero.facebook">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="email" class="form-control border-input" formControlName="email1" [(ngModel)]="hero.email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>ที่อยู่</label>
+                                            <textarea class="form-control border-input" rows="5" formControlName="address1" [(ngModel)]="hero.address"></textarea> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label >จังหวัด</label>
+                                              <select class="form-control border-input" formControlName="province1" (change)="onAmphur($event)" [(ngModel)]="hero.province">
+                                                  <option *ngFor="let state of province" [value]="state.PROVINCE_NAME">{{state.PROVINCE_NAME}}</option>
+                                              </select>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label >อำเภอ</label>
+                                              <select class="form-control" formControlName="amphur1" *ngIf="!search_amphur" [(ngModel)]="hero.amphur">
+                                                <option >{{hero.amphur}}</option> 
+                                                  <option *ngFor="let state of amphur1" [value]="state.AMPHUR_NAME" >{{state.AMPHUR_NAME}}</option>
+                                              </select>
+                                              <select class="form-control" formControlName="amphur1" [value]="hero.amphur" *ngIf="search_amphur">
+                                                  <option >กรุณาเลือกเขต / อำเภอ</option>
+                                                  <option *ngFor="let state of amphur1">{{state.AMPHUR_NAME}}</option>
+                                              </select>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="text-center">
+                                    <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
+                                    </div>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+            </div>
+
+            
+            	
+                            
+                            		
+                            
+                            <!-- <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <input type="text" class="form-control border-input" placeholder="Home Address" value="Melbourne, Australia">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <input type="text" class="form-control border-input" placeholder="City" value="Melbourne">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <input type="text" class="form-control border-input" placeholder="Country" value="Australia">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Postal Code</label>
+                                        <input type="number" class="form-control border-input" placeholder="ZIP Code">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>About Me</label>
+                                        <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="Mike">
+Oh so, your weak rhyme
+You doubt I'll bother, reading into it
+I'll probably won't, left to my own devices
+But that's the difference in our opinions.</textarea>
+                                    </div>
+                                </div>
+                            </div> -->
+                            
+            </div>
+            
+
+        </div>
+
+    </div>
+    
+    <div id="deleteEmployeeModal" class="modal fade" role="dialog" data-backdrop="false">
+        <div class="modal-dialog" style="max-width: 600px; ">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">                      
+                        <h4 class="modal-title">รายการสั่งซื่อ</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">                    
+                        <table class="table table-striped table-hover">
+                <thead>
+                    <tr style="text-align:center;">
+                        <th>#</th>
+                        <th>สินค้า</th>       
+                        <th>จำนวน</th>
+                        <th>ราคา</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let hero of data_detail; let i = index" [attr.data-index]="i">
+                        <td>{{i+1}}</td>
+                        <td><a ><img src="{{hero.order_d_img}}" width="50" height="50" class="avatar" alt="Avatar">{{hero.order_d_title}}</a></td>
+                        <!-- <td>London</td> -->                      
+                        <!-- <td><span class="status text-success">&bull;</span> Delivered</td> -->
+                        <td>{{hero.order_d_qty}}</td>
+                        <!-- <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td> -->
+                        <td>
+                            ฿ {{hero.order_d_price}}
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+                    </div>
+                    <div class="modal-footer">
+                        
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

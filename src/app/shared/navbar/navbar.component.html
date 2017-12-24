@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" (click)="sidebarToggle()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar bar1"></span>
+                <span class="icon-bar bar2"></span>
+                <span class="icon-bar bar3"></span>
+            </button>
+            <a class="navbar-brand" href="#">{{getTitle()}}</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                      <!-- <a routerLink="report" class="dropdown-toggle" data-toggle="dropdown" style="color:#DD0330;">
+                            <i class="ti-bell"></i>
+                            <p class="notification">{{status}}</p>
+                            
+                      </a> -->
+                </li>
+                <li>
+                    <!-- <a routerLink="tree_user" style="color:#27ae60;">
+                        <i class="ti-list"></i>
+                        <p>User</p>
+                    </a> -->
+                    <a routerLink="profile/admin" style="color:#27ae60;">
+                        <i class="ti-id-badge"></i>
+                        <p>ข้อมูลส่วนตัว</p>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>

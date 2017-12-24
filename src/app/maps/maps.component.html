@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+        	<div class="card">
+                <div class="header">
+                    <div class="row">
+                            <div class="col-md-10">
+                                <h4 class="title">แผนที่</h4>
+                            </div>
+                            <div class="col-md-2">
+                                  <div class="filter-group">
+                                        <select class="form-control" (change)="status_map($event)">
+                                            <option value="any">เลือกข้อมูล</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="dealer">Dealer</option>
+                                            <option value="vip">Vip</option>
+                                            <option value="gold">Gold</option>                       
+                                        </select>
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="content table-responsive table-full-width">
+					<div id="map" class="maps"></div>
+				</div>
+		</div>
+	</div>
+</div>

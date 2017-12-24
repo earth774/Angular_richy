@@ -1,0 +1,55 @@
+.maps{
+  width: 100%;
+  height:45em;
+}
+.add-new {
+    float: right;
+	height: 30px;
+	font-weight: bold;
+	font-size: 12px;
+	text-shadow: none;
+	min-width: 100px;
+	border-radius: 50px;
+	line-height: 13px;
+	color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    }
+ .add-new i {
+		margin-right: 4px;
+	}
+	table.table td  {
+	    width: 0.2em;
+	}
+
+
+    .profile-top {
+        width: 100%;
+        margin: 0;
+    }
+  .profile-photo {
+    padding-top: 16px; 
+    text-align: center;
+   }
+  .profile-photo img {
+        width: 128px;
+        height: 128px;
+        border-radius: 50%;
+        border: solid 2px rgba(234, 79, 20, .5);
+        margin: 0 auto;
+    }
+
+    .example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+ng2-auto-complete, input {
+       border: 1px solid #ccc; 
+    }
+
+    

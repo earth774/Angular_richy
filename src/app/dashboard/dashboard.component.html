@@ -1,0 +1,216 @@
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6" >
+                <div class="card" routerLink="../user">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-warning text-center">
+                                    <i class="ti-user"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers" *ngFor="let data of num_person">
+                                    <p>สมาชิก</p>
+                                    {{data.num_user}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="ti-reload"></i> อัปเดต ณ {{year | date:'HH:mm'}} น.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card" routerLink="../order">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-success text-center">
+                                    <i class="ti-package"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers" >
+                                    <p>รายการสินค้า</p>
+                                    {{package}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="ti-reload"></i> อัปเดต ณ {{year | date:'HH:mm'}} น.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card" routerLink="../order/today">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-info text-center">
+                                    <i class="ti-wallet"></i>
+                                </div>
+                                
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>เงิน / วัน</p>
+                                    ฿{{wallet}}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="ti-reload"></i> อัปเดต ณ {{year | date:'HH:mm'}} น.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card" routerLink="../report">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-danger text-center">
+                                    <i class="ti-bell"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>Confirm</p>
+                                    {{status}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="ti-reload"></i> อัปเดต ณ {{year | date:'HH:mm'}} น.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h4 class="title">สถิติรายได้ทั้งหมด </h4>
+                                <p class="category">{{year | date:'dd-MM-yyyy'}}</p>
+                            </div>
+                            <div class="col-md-2">
+                                  <div class="filter-group">
+                                        <select class="form-control" (change)="data_e($event)">
+                                            <option value="0">เลือกข้อมูล</option>
+                                            <option value="1">วัน</option>
+                                            <option value="2">สัปดาห์</option>
+                                            <option value="3">เดือน</option>
+                                            <option value="4">ปี</option>                             
+                                        </select>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div id="chartHours" class="ct-chart"></div>
+                        <div class="footer">
+                            <div class="chart-legend">
+<!--                                 <i class="fa fa-circle text-info"></i> Dealer
+                                <i class="fa fa-circle text-danger"></i> Vip -->
+                                <i class="fa fa-circle text-warning"></i> Dealer
+                            </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="ti-reload"></i> อัปเดต ณ {{year | date:'HH:mm'}} น.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="header">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4 class="title">ผู้ใช้ที่มียอดสูงสุด</h4>
+                                <p class="category">{{year | date:'dd-MM-yyyy'}}</p>
+                            </div>
+                            <div class="col-md-4">
+                                  <div class="filter-group">
+                                        <select class="form-control" (change)="status_top($event)">
+                                            <option value="0">เลือกข้อมูล</option>
+                                            <option >Dealer</option>
+                                            <option >Vip</option>
+                                            <option >gold</option>                       
+                                        </select>
+                                    </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="content">
+                        <ul class="list-unstyled team-members">
+                                    <li *ngFor="let top of top5">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <div class="avatar">
+                                                    <img src="{{top.user_image}}" alt="Circle Image" class="img-circle img-no-padding img-responsive" style="height: 50px; width:50px;">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <span routerLink="../profile/{{top.user_username}}" style="font-weight: bold;">{{top.user_name}}</span><br>
+                                                <span class="text-success"><small>จำนวน : {{top.order_num}}</small></span>
+                                            </div>
+
+                                            <div class="col-xs-3 text-right">
+                                                <button class="btn btn-sm btn-success btn-icon">฿ {{top.order_total}}</button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
+                                </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card ">
+                    <div class="header">
+                        <h4 class="title">ยอดรายได้ปี {{year | date:'yyyy'}} </h4>
+                        <p class="category">อ้างอิงข้อมูลรายได้แต่ละเดือนของ Dealer</p>
+                    </div>
+                    <div class="content">
+                        <div id="chartActivity" class="ct-chart"></div>
+
+                        <div class="footer">
+                            <div class="chart-legend">
+                                <!-- <i class="fa fa-circle text-info"></i> Dealer -->
+                                <i class="fa fa-circle text-danger"></i> Dealer
+                                <!-- <i class="fa fa-circle text-warning"></i> Gold -->
+                            </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="ti-reload"></i> อัปเดต ณ {{year | date:'HH:mm'}} น.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
